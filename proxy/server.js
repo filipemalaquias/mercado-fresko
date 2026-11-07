@@ -15,17 +15,20 @@ app.post('/api/appypay/auth', async (req, res) => {
     params.append('client_id', process.env.APPYPAY_CLIENT_ID);
     params.append('client_secret', process.env.APPYPAY_CLIENT_SECRET);
     
-    // O resource é obrigatório
+    // O resource é obrigatório conforme a documentação oficial
     params.append('resource', '2aed7612-de64-46b5-9e59-1f48f8902d14');
 
-    // 👇 URL CORRETO para o ambiente de TESTES (conforme a imagem)
-    const response = await axios.post(
-      'https://login.microsoftonline.com/appypaydev.onmicrosoft.com/oauth2/token', 
-      params, 
-      {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    // 👇 Forçar o método POST e garantir o Content-Type
+    const response = await axios({
+      method: 'post',
+      url: 'https://login.microsoftonline.com/auth.appypay.co.ao/oauth2/token', // URL de PRODUÇÃO
+      data: params.toString(),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json'
       }
-    );
+    });
+
     res.json(response.data);
   } catch (error) {
     console.error('Erro auth:', error.response?.data || error.message);
@@ -43,9 +46,8 @@ app.post('/api/appypay/charges', async (req, res) => {
     
     console.log('A enviar para AppyPay:', req.body);
 
-    // 👇 URL de cobrança para TESTES (conforme a imagem "AppyPay-API")
     const response = await axios.post(
-      'https://gwy-api-tst.appypay.co.ao/v2.0/charges', 
+      'https://gwy-api.appypay.co.ao/v2.0/charges', // URL de PRODUÇÃO
       req.body, 
       {
         headers: { 
