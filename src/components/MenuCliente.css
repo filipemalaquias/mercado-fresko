@@ -1,0 +1,613 @@
+/* =========================================================
+   MENU CLIENTE — Premium (Petróleo, Creme, Âmbar)
+   ========================================================= */
+
+:root {
+  --mfc-primary: #123a4a;
+  --mfc-primary-dark: #0b2732;
+  --mfc-primary-light: #1d5570;
+  --mfc-surface: #fafaf7;
+  --mfc-surface-alt: #eef0ec;
+  --mfc-accent: #d99b2b;
+  --mfc-accent-dark: #b57f1a;
+  --mfc-ink: #2a2f33;
+  --mfc-ink-soft: #6b7075;
+  --mfc-border: #e2e4df;
+  --mfc-transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================================
+   HEADER BASE
+   ========================================================= */
+.mfc-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 250, 247, 0.95);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--mfc-border);
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+.mfc-header-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  height: 72px;
+}
+
+/* =========================================================
+   LOGÓTIPO
+   ========================================================= */
+.mfc-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--mfc-ink);
+  flex-shrink: 0;
+}
+
+.mfc-brand-symbol {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  color: var(--mfc-surface);
+  background: var(--mfc-primary);
+  box-shadow: 0 6px 18px rgba(18, 58, 74, 0.3);
+}
+
+.mfc-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+  font-size: 1.05rem;
+}
+
+.mfc-brand-text strong {
+  font-weight: 800;
+  color: var(--mfc-primary);
+}
+
+.mfc-brand-text span {
+  font-weight: 600;
+  color: var(--mfc-ink-soft);
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   BARRA DE PESQUISA
+   ========================================================= */
+.mfc-search {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex: 1;
+  max-width: 520px;
+  margin: 0 0.5rem;
+  padding: 0.55rem 0.9rem;
+  background: #fff;
+  border: 1.5px solid var(--mfc-border);
+  border-radius: 999px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: border-color var(--mfc-transition);
+}
+
+.mfc-search:focus-within {
+  border-color: var(--mfc-primary);
+}
+
+.mfc-search-icon {
+  color: var(--mfc-ink-soft);
+  flex-shrink: 0;
+}
+
+.mfc-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.95rem;
+  color: var(--mfc-ink);
+  min-width: 0;
+  font-family: inherit;
+}
+
+.mfc-search-clear {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: var(--mfc-surface-alt);
+  color: var(--mfc-ink-soft);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* =========================================================
+   NAVEGAÇÃO
+   ========================================================= */
+.mfc-navigation {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.mfc-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.93rem;
+  font-weight: 500;
+  color: var(--mfc-ink-soft);
+  text-decoration: none;
+  border-radius: 14px;
+  transition: all var(--mfc-transition);
+}
+
+.mfc-nav-link:hover {
+  color: var(--mfc-primary);
+  background: var(--mfc-surface-alt);
+}
+
+.mfc-nav-active {
+  color: var(--mfc-primary);
+  font-weight: 700;
+}
+
+.mfc-nav-icon-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mfc-nav-chevron {
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all var(--mfc-transition);
+  color: var(--mfc-primary);
+}
+
+.mfc-nav-link:hover .mfc-nav-chevron {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Elementos que só aparecem no mobile */
+.mfc-nav-heading,
+.mfc-nav-close,
+.mfc-mobile-footer {
+  display: none;
+}
+
+/* =========================================================
+   AÇÕES (Desktop)
+   ========================================================= */
+.mfc-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.mfc-action-btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1.5px solid var(--mfc-border);
+  background: transparent;
+  color: var(--mfc-primary);
+  text-decoration: none;
+  transition: all var(--mfc-transition);
+}
+
+.mfc-action-btn:hover {
+  border-color: var(--mfc-primary);
+  background: var(--mfc-primary);
+  color: var(--mfc-surface);
+}
+
+.mfc-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--mfc-accent);
+  color: var(--mfc-primary-dark);
+  font-size: 0.65rem;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--mfc-surface);
+}
+
+/* Menu do utilizador */
+.mfc-user-menu {
+  position: relative;
+}
+
+.mfc-user-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem 0.35rem 0.35rem;
+  background: transparent;
+  border: 1.5px solid var(--mfc-border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all var(--mfc-transition);
+  font-family: inherit;
+}
+
+.mfc-user-trigger:hover,
+.mfc-user-trigger.is-open {
+  border-color: var(--mfc-primary);
+  background: var(--mfc-surface-alt);
+}
+
+.mfc-user-avatar {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--mfc-primary);
+  color: var(--mfc-surface);
+  font-weight: 800;
+  font-size: 0.85rem;
+  overflow: hidden;
+}
+
+.mfc-user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mfc-user-info strong {
+  font-size: 0.9rem;
+  color: var(--mfc-primary-dark);
+}
+
+.mfc-user-chevron {
+  color: var(--mfc-ink-soft);
+  transition: transform var(--mfc-transition);
+}
+
+.mfc-user-chevron.is-rotated {
+  transform: rotate(180deg);
+}
+
+/* Dropdown do utilizador */
+.mfc-user-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 240px;
+  background: #fff;
+  border: 1px solid var(--mfc-border);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  z-index: 200;
+}
+
+.mfc-dropdown-heading {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--mfc-border);
+  margin-bottom: 0.5rem;
+}
+
+.mfc-dropdown-heading strong {
+  font-size: 0.95rem;
+  color: var(--mfc-primary-dark);
+}
+
+.mfc-dropdown-heading span {
+  font-size: 0.8rem;
+  color: var(--mfc-ink-soft);
+}
+
+.mfc-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.7rem 0.75rem;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: left;
+  color: var(--mfc-primary-dark);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+
+.mfc-dropdown-item:hover {
+  background: var(--mfc-surface-alt);
+}
+
+.mfc-dropdown-divider {
+  height: 1px;
+  background: var(--mfc-border);
+  margin: 0.4rem 0.5rem;
+}
+
+.mfc-logout {
+  color: #b23a1f;
+}
+.mfc-logout:hover {
+  background: #fff0ec;
+}
+
+/* =========================================================
+   BOTÕES MOBILE
+   ========================================================= */
+.mfc-menu-toggle,
+.mfc-search-toggle {
+  display: none;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1.5px solid var(--mfc-border);
+  background: transparent;
+  color: var(--mfc-primary);
+  border-radius: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   BACKDROP (Fundo escuro)
+   ========================================================= */
+.mfc-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  border: none;
+  background: rgba(18, 58, 74, 0.5);
+  backdrop-filter: blur(3px);
+  cursor: pointer;
+}
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+@media (max-width: 1024px) {
+  .mfc-search {
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Esconde nav e acções desktop */
+  .mfc-navigation,
+  .mfc-actions .mfc-user-menu {
+    display: none;
+  }
+
+  /* Esconde a barra de pesquisa principal (usa-se a mobile) */
+  .mfc-search:not(.mfc-search-mobile) {
+    display: none;
+  }
+
+  /* Mostra botões mobile */
+  .mfc-search-toggle,
+  .mfc-menu-toggle {
+    display: grid;
+  }
+
+  .mfc-header-container {
+    gap: 0.5rem;
+  }
+
+  /* O carrinho e notificações ficam visíveis antes do menu */
+  .mfc-actions {
+    display: flex;
+    gap: 0.4rem;
+    margin-left: auto;
+    margin-right: 0.4rem;
+  }
+
+  .mfc-actions .mfc-action-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* =========================================
+     PAINEL DO MENU MOBILE (AQUI ESTÁ A CORREÇÃO)
+     ========================================= */
+  .mfc-navigation {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: min(88vw, 360px);
+    height: 100vh;
+    padding: 1.5rem;
+    gap: 0.5rem;
+    background: var(--mfc-surface);
+    border-left: 1px solid var(--mfc-border);
+    box-shadow: -20px 0 50px rgba(18, 58, 74, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+  }
+
+  .mfc-navigation-open {
+    transform: translateX(0);
+  }
+
+  /* Cabeçalho do menu mobile */
+  .mfc-nav-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--mfc-border);
+    font-weight: 700;
+    color: var(--mfc-primary);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+
+  .mfc-nav-close {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border: none;
+    background: var(--mfc-surface-alt);
+    color: var(--mfc-primary);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  /* Links do menu mobile */
+  .mfc-nav-link {
+    justify-content: space-between;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 14px;
+    color: var(--mfc-ink);
+    background: #fff;
+    border: 1px solid var(--mfc-border);
+  }
+
+  .mfc-nav-active {
+    background: var(--mfc-primary);
+    border-color: var(--mfc-primary);
+    color: var(--mfc-surface);
+  }
+
+  .mfc-nav-active .mfc-nav-chevron {
+    color: currentColor;
+  }
+
+  .mfc-nav-chevron {
+    opacity: 0.5;
+    transform: none;
+  }
+
+  .mfc-nav-link:hover .mfc-nav-chevron,
+  .mfc-nav-active .mfc-nav-chevron {
+    opacity: 1;
+  }
+
+  /* Rodapé do menu mobile */
+  .mfc-mobile-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--mfc-border);
+  }
+
+  .mfc-mobile-footer p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--mfc-ink-soft);
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .mfc-mobile-partner {
+    display: block;
+    padding: 0.85rem;
+    text-align: center;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--mfc-surface);
+    background: var(--mfc-primary);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .mfc-mobile-partner:hover {
+    background: var(--mfc-primary-dark);
+  }
+
+  /* Barra de pesquisa mobile */
+  .mfc-search-mobile {
+    display: flex;
+    margin: 0 1rem 1rem;
+    max-width: none;
+    border-radius: 12px;
+    animation: slideDown 0.25s ease;
+  }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .mfc-header-container {
+    padding: 0 0.85rem;
+    height: 64px;
+  }
+
+  .mfc-brand-text {
+    font-size: 0.95rem;
+  }
+
+  .mfc-brand-symbol {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* =========================================================
+   ACESSIBILIDADE
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.mfc-menu-toggle:focus-visible,
+.mfc-search-toggle:focus-visible,
+.mfc-brand:focus-visible,
+.mfc-nav-link:focus-visible,
+.mfc-action-btn:focus-visible,
+.mfc-search-clear:focus-visible,
+.mfc-nav-close:focus-visible,
+.mfc-user-trigger:focus-visible {
+  outline: 2px solid var(--mfc-primary);
+  outline-offset: 2px;
+}

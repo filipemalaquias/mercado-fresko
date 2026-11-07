@@ -1,0 +1,692 @@
+/* =========================================================
+   MERCADO FRESKO — HEADER (Carrinho + Menu Mobile)
+   Paleta: petróleo · creme · âmbar
+   ========================================================= */
+
+:root {
+    /* Dominante */
+    --mf-primary: #123a4a;
+    --mf-primary-light: #1d5570;
+    --mf-primary-dark: #0b2732;
+
+    /* Superfícies */
+    --mf-surface: #fafaf7;
+    --mf-surface-alt: #eef0ec;
+
+    /* Accent único */
+    --mf-accent: #d99b2b;
+    --mf-accent-dark: #b57f1a;
+    --mf-accent-soft: #f5e7c3;
+
+    /* Texto */
+    --mf-ink: #2a2f33;
+    --mf-ink-soft: #6b7075;
+    --mf-border: #e2e4df;
+
+    --mf-radius-sm: 10px;
+    --mf-radius-md: 14px;
+    --mf-radius-lg: 999px;
+
+    --mf-shadow-sm: 0 1px 2px rgba(18, 58, 74, 0.06);
+    --mf-shadow-md: 0 6px 20px rgba(18, 58, 74, 0.1);
+    --mf-shadow-lg: 0 20px 50px rgba(18, 58, 74, 0.18);
+    --mf-transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --mf-header-height: 72px;
+}
+
+/* =========================================================
+   HEADER BASE
+   ========================================================= */
+
+.mf-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 250, 247, 0.92);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--mf-border);
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.mf-header-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    height: var(--mf-header-height);
+}
+
+/* =========================================================
+   LOGÓTIPO
+   ========================================================= */
+
+.mf-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--mf-ink);
+    flex-shrink: 0;
+    transition: transform var(--mf-transition);
+}
+
+.mf-brand:hover {
+    transform: translateY(-1px);
+}
+
+.mf-brand-symbol {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    color: var(--mf-surface);
+    background: var(--mf-primary);
+    box-shadow: 0 6px 18px rgba(18, 58, 74, 0.3);
+    transition: box-shadow var(--mf-transition), transform var(--mf-transition);
+}
+
+.mf-brand:hover .mf-brand-symbol {
+    transform: rotate(-4deg);
+    box-shadow: 0 10px 24px rgba(18, 58, 74, 0.42);
+}
+
+.mf-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+}
+
+.mf-brand-text strong {
+    font-weight: 800;
+    color: var(--mf-primary);
+}
+
+.mf-brand-text span {
+    font-weight: 600;
+    color: var(--mf-ink-soft);
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   BARRA DE PESQUISA
+   ========================================================= */
+
+.mf-search {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex: 1;
+    max-width: 520px;
+    margin: 0 0.5rem;
+    padding: 0.55rem 0.9rem;
+    background: #fff;
+    border: 1.5px solid var(--mf-border);
+    border-radius: var(--mf-radius-lg);
+    box-shadow: var(--mf-shadow-sm);
+    transition: border-color var(--mf-transition), box-shadow var(--mf-transition);
+}
+
+.mf-search:focus-within {
+    border-color: var(--mf-primary);
+    box-shadow: 0 0 0 4px rgba(18, 58, 74, 0.14);
+}
+
+.mf-search-icon {
+    color: var(--mf-ink-soft);
+    flex-shrink: 0;
+    transition: color var(--mf-transition);
+}
+
+.mf-search:focus-within .mf-search-icon {
+    color: var(--mf-primary);
+}
+
+.mf-search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 0.95rem;
+    color: var(--mf-ink);
+    min-width: 0;
+    font-family: inherit;
+}
+
+.mf-search-input::placeholder {
+    color: var(--mf-ink-soft);
+    opacity: 0.7;
+}
+
+.mf-search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.mf-search-clear {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: var(--mf-surface-alt);
+    color: var(--mf-ink-soft);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background var(--mf-transition), color var(--mf-transition), transform var(--mf-transition);
+}
+
+.mf-search-clear:hover {
+    background: var(--mf-primary);
+    color: var(--mf-surface);
+    transform: scale(1.08);
+}
+
+/* =========================================================
+   NAVEGAÇÃO
+   ========================================================= */
+
+.mf-navigation {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: auto;
+}
+
+.mf-nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: var(--mf-ink-soft);
+    text-decoration: none;
+    border-radius: var(--mf-radius-md);
+    transition: color var(--mf-transition), background var(--mf-transition);
+}
+
+.mf-nav-link:hover {
+    color: var(--mf-primary);
+    background: var(--mf-surface-alt);
+}
+
+.mf-nav-chevron {
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity var(--mf-transition), transform var(--mf-transition);
+    color: var(--mf-primary);
+}
+
+.mf-nav-link:hover .mf-nav-chevron {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.mf-nav-active {
+    color: var(--mf-primary);
+    font-weight: 700;
+}
+
+.mf-nav-active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    width: 6px;
+    height: 6px;
+    background: var(--mf-accent);
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+/* Elementos que só aparecem no menu mobile */
+.mf-navigation-heading,
+.mf-menu-close,
+.mf-mobile-menu-footer {
+    display: none;
+}
+
+/* =========================================================
+   AÇÕES (Desktop)
+   ========================================================= */
+
+.mf-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+}
+
+.mf-account-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 0.95rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--mf-primary);
+    text-decoration: none;
+    border-radius: var(--mf-radius-md);
+    border: 1.5px solid var(--mf-border);
+    background: transparent;
+    transition: all var(--mf-transition);
+}
+
+.mf-account-button:hover {
+    border-color: var(--mf-primary);
+    background: var(--mf-primary);
+    color: var(--mf-surface);
+}
+
+.mf-header-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--mf-primary-dark);
+    text-decoration: none;
+    border-radius: var(--mf-radius-md);
+    background: var(--mf-accent);
+    box-shadow: 0 6px 18px rgba(217, 155, 43, 0.32);
+    transition: transform var(--mf-transition), box-shadow var(--mf-transition), background var(--mf-transition);
+}
+
+.mf-header-cta:hover {
+    transform: translateY(-1px);
+    background: var(--mf-accent-dark);
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(217, 155, 43, 0.42);
+}
+
+.mf-header-cta svg {
+    transition: transform var(--mf-transition);
+}
+
+.mf-header-cta:hover svg {
+    transform: translateX(3px);
+}
+
+/* =========================================================
+   BOTÃO DO CARRINHO
+   ========================================================= */
+
+.mf-cart-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: 1.5px solid var(--mf-border);
+    background: transparent;
+    color: var(--mf-primary);
+    text-decoration: none;
+    transition: all var(--mf-transition);
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.mf-cart-icon:hover {
+    border-color: var(--mf-primary);
+    background: var(--mf-primary);
+    color: var(--mf-surface);
+}
+
+.mf-cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: var(--mf-accent);
+    color: var(--mf-primary-dark);
+    font-size: 0.65rem;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+    line-height: 1;
+    border: 2px solid var(--mf-surface);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+}
+
+.mf-cart-icon:hover .mf-cart-badge {
+    background: var(--mf-surface);
+    color: var(--mf-primary-dark);
+    border-color: var(--mf-primary);
+}
+
+/* =========================================================
+   BOTÕES MOBILE
+   ========================================================= */
+
+.mf-menu-toggle,
+.mf-search-toggle {
+    display: none;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 1.5px solid var(--mf-border);
+    background: transparent;
+    color: var(--mf-primary);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all var(--mf-transition);
+    flex-shrink: 0;
+}
+
+.mf-menu-toggle:hover,
+.mf-search-toggle:hover {
+    border-color: var(--mf-primary);
+    background: var(--mf-primary);
+    color: var(--mf-surface);
+}
+
+/* =========================================================
+   BACKDROP (Fundo escuro)
+   ========================================================= */
+
+.mf-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    border: none;
+    background: rgba(18, 58, 74, 0.5);
+    backdrop-filter: blur(3px);
+    cursor: pointer;
+    animation: mf-fade-in 0.25s ease;
+}
+
+@keyframes mf-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* =========================================================
+   RESPONSIVO — Menu Mobile
+   ========================================================= */
+
+@media (max-width: 1024px) {
+    .mf-search {
+        max-width: 340px;
+    }
+}
+
+@media (max-width: 900px) {
+    /* 1. Esconder elementos do desktop */
+    .mf-navigation {
+        display: none;
+    }
+    
+    /* 2. Esconder botões de Entrar e Parceiro (mantendo o carrinho) */
+    .mf-header-actions .mf-account-button,
+    .mf-header-actions .mf-header-cta {
+        display: none;
+    }
+
+    /* 3. Esconder a barra de pesquisa inline (usamos a mobile) */
+    .mf-search {
+        display: none;
+    }
+
+    /* 4. Mostrar botões de ação mobile */
+    .mf-search-toggle,
+    .mf-menu-toggle {
+        display: grid;
+    }
+
+    /* 5. Alinhar os botões à direita */
+    .mf-header-actions {
+        display: flex;
+        margin-left: auto;
+        margin-right: 0.5rem;
+    }
+
+    /* 6. O Menu Lateral (Painel) */
+    .mf-navigation {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 999; /* Garante que fica por cima de tudo */
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: min(88vw, 360px);
+        height: 100vh; /* Ocupa a altura total do ecrã */
+        padding: 1.5rem;
+        gap: 0.5rem;
+        background: var(--mf-surface);
+        border-left: 1px solid var(--mf-border);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+    }
+
+    .mf-navigation-open {
+        transform: translateX(0);
+    }
+
+    /* Cabeçalho do menu mobile */
+    .mf-navigation-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 1rem;
+        margin-bottom: 0.5rem;
+        border-bottom: 1px solid var(--mf-border);
+        font-weight: 700;
+        color: var(--mf-primary);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+    }
+
+    .mf-menu-close {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border: none;
+        background: var(--mf-surface-alt);
+        color: var(--mf-primary);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all var(--mf-transition);
+    }
+
+    .mf-menu-close:hover {
+        background: var(--mf-primary);
+        color: var(--mf-surface);
+    }
+
+    /* Links dentro do menu mobile */
+    .mf-nav-link {
+        justify-content: space-between;
+        padding: 1rem;
+        font-size: 1rem;
+        border-radius: var(--mf-radius-md);
+        color: var(--mf-ink);
+        background: #fff;
+        border: 1px solid var(--mf-border);
+    }
+
+    .mf-nav-link:hover {
+        background: var(--mf-surface-alt);
+        border-color: var(--mf-primary);
+    }
+
+    .mf-nav-active {
+        background: var(--mf-primary);
+        border-color: var(--mf-primary);
+        color: var(--mf-surface);
+    }
+
+    .mf-nav-active::after {
+        display: none;
+    }
+
+    .mf-nav-chevron {
+        opacity: 0.5;
+        transform: none;
+    }
+
+    .mf-nav-link:hover .mf-nav-chevron,
+    .mf-nav-active .mf-nav-chevron {
+        opacity: 1;
+        color: currentColor;
+    }
+
+    /* O link do carrinho no menu */
+    .mf-nav-cart-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .mf-nav-cart-label svg {
+        color: var(--mf-primary);
+    }
+    .mf-nav-active .mf-nav-cart-label svg,
+    .mf-nav-link:hover .mf-nav-cart-label svg {
+        color: currentColor;
+    }
+
+    /* Rodapé do menu mobile */
+    .mf-mobile-menu-footer {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-top: auto; /* Empurra para o fundo */
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--mf-border);
+    }
+
+    .mf-mobile-menu-footer p {
+        margin: 0 0 0.5rem;
+        font-size: 0.85rem;
+        color: var(--mf-ink-soft);
+        line-height: 1.4;
+        text-align: center;
+    }
+
+    .mf-mobile-account {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.85rem 1rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--mf-primary);
+        text-decoration: none;
+        background: #fff;
+        border: 1px solid var(--mf-border);
+        border-radius: var(--mf-radius-md);
+        transition: all var(--mf-transition);
+    }
+
+    .mf-mobile-account span {
+        flex: 1;
+    }
+
+    .mf-mobile-account:hover {
+        border-color: var(--mf-primary);
+        background: var(--mf-surface-alt);
+    }
+
+    .mf-mobile-partner {
+        display: block;
+        padding: 0.85rem 1rem;
+        text-align: center;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--mf-primary-dark);
+        text-decoration: none;
+        background: var(--mf-accent);
+        border-radius: var(--mf-radius-md);
+        box-shadow: 0 6px 18px rgba(217, 155, 43, 0.28);
+        transition: transform var(--mf-transition), box-shadow var(--mf-transition), background var(--mf-transition);
+    }
+
+    .mf-mobile-partner:hover {
+        transform: translateY(-1px);
+        background: var(--mf-accent-dark);
+        color: #fff;
+    }
+
+    /* Barra de pesquisa mobile (que abre por baixo) */
+    .mf-search-mobile {
+        display: flex;
+        margin: 0 1rem 1rem;
+        max-width: none;
+        border-radius: var(--mf-radius-md);
+        animation: mf-slide-down 0.25s ease;
+    }
+}
+
+@keyframes mf-slide-down {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+    .mf-header-container {
+        padding: 0 0.85rem;
+        height: 64px;
+    }
+
+    .mf-brand-text {
+        font-size: 0.95rem;
+    }
+
+    .mf-brand-symbol {
+        width: 38px;
+        height: 38px;
+    }
+
+    .mf-search-mobile {
+        margin: 0 0.85rem 0.85rem;
+    }
+}
+
+/* =========================================================
+   ACESSIBILIDADE
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.mf-menu-toggle:focus-visible,
+.mf-search-toggle:focus-visible,
+.mf-brand:focus-visible,
+.mf-nav-link:focus-visible,
+.mf-account-button:focus-visible,
+.mf-header-cta:focus-visible,
+.mf-cart-icon:focus-visible,
+.mf-search-clear:focus-visible,
+.mf-menu-close:focus-visible,
+.mf-mobile-account:focus-visible,
+.mf-mobile-partner:focus-visible {
+    outline: 2px solid var(--mf-primary);
+    outline-offset: 2px;
+}

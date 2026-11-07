@@ -1,0 +1,842 @@
+
+/* ==========================================
+   MERCADO FRESKO — PÁGINA SOBRE NÓS
+   Ficheiro independente
+   ========================================== */
+
+.sobre-page {
+    --sobre-green: #16794b;
+    --sobre-green-dark: #105e39;
+    --sobre-green-light: #eaf5ee;
+    --sobre-text: #17251e;
+    --sobre-muted: #718078;
+    --sobre-border: #e3ebe5;
+    --sobre-soft: #f5f8f5;
+
+    color: var(--sobre-text);
+    background: #ffffff;
+    overflow: hidden;
+    font-family: inherit;
+}
+
+.sobre-page *,
+.sobre-page *::before,
+.sobre-page *::after {
+    box-sizing: border-box;
+}
+
+.sobre-container {
+    width: min(1160px, calc(100% - 48px));
+    margin-inline: auto;
+}
+
+.sobre-page a {
+    text-decoration: none;
+}
+
+/* HERO */
+
+.sobre-hero {
+    position: relative;
+    padding: 76px 0 84px;
+    background:
+        radial-gradient(ellipse at 85% 15%, rgba(22, 121, 75, .10), transparent 35%),
+        linear-gradient(135deg, #f8fbf8 0%, #edf6ef 100%);
+}
+
+.sobre-hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    align-items: center;
+    gap: 65px;
+}
+
+.sobre-hero-copy {
+    max-width: 620px;
+}
+
+.sobre-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    color: var(--sobre-green);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    line-height: 1.7;
+}
+
+.sobre-hero h1 {
+    margin: 0;
+    color: var(--sobre-text);
+    font-size: clamp(42px, 5vw, 66px);
+    font-weight: 850;
+    letter-spacing: -2.8px;
+    line-height: 1.08;
+}
+
+.sobre-hero h1 span {
+    display: block;
+    color: var(--sobre-green);
+}
+
+.sobre-hero-copy > p {
+    max-width: 520px;
+    margin: 24px 0 28px;
+    color: #617067;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.sobre-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.sobre-button {
+    display: inline-flex;
+    min-height: 51px;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    padding: 0 21px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: var(--sobre-green);
+    color: #ffffff !important;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 750;
+    text-align: center;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.sobre-button:hover {
+    transform: translateY(-2px);
+    background: var(--sobre-green-dark);
+    box-shadow: 0 9px 22px rgba(16, 94, 57, .16);
+}
+
+.sobre-button:focus-visible,
+.sobre-text-link:focus-visible,
+.sobre-inline-link:focus-visible {
+    outline: 3px solid rgba(22, 121, 75, .3);
+    outline-offset: 4px;
+}
+
+.sobre-text-link,
+.sobre-inline-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--sobre-green-dark);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.sobre-text-link:hover,
+.sobre-inline-link:hover {
+    color: var(--sobre-green);
+}
+
+.sobre-hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 30px;
+}
+
+.sobre-hero-trust span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #637168;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.sobre-hero-trust svg {
+    color: var(--sobre-green);
+}
+
+/* HERO VISUAL */
+
+.sobre-visual {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    min-height: 410px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(22, 121, 75, .11);
+    border-radius: 28px;
+    background:
+        radial-gradient(ellipse at center, #fff 0%, #f1f8f2 48%, #dcefe1 100%);
+}
+
+.sobre-visual-decoration {
+    position: absolute;
+    border: 1px solid rgba(22, 121, 75, .12);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.sobre-decoration-one {
+    width: 250px;
+    height: 250px;
+}
+
+.sobre-decoration-two {
+    width: 355px;
+    height: 355px;
+}
+
+.sobre-visual-icon {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: 155px;
+    height: 155px;
+    place-items: center;
+    border: 1px solid #e1ece3;
+    border-radius: 35px;
+    background: #ffffff;
+    color: var(--sobre-green);
+    box-shadow: 0 25px 65px rgba(22, 80, 46, .12);
+    transform: rotate(-5deg);
+}
+
+.sobre-floating-card {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 13px 15px;
+    border: 1px solid #e6ece7;
+    border-radius: 13px;
+    background: #ffffff;
+    box-shadow: 0 12px 35px rgba(23, 37, 30, .08);
+}
+
+.sobre-floating-one {
+    top: 65px;
+    right: 15px;
+}
+
+.sobre-floating-two {
+    bottom: 88px;
+    left: 15px;
+}
+
+.sobre-floating-icon {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    place-items: center;
+    border-radius: 10px;
+    background: var(--sobre-green-light);
+    color: var(--sobre-green);
+}
+
+.sobre-floating-card > span:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sobre-floating-card strong {
+    color: var(--sobre-text);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.sobre-floating-card small {
+    color: var(--sobre-muted);
+    font-size: 10px;
+}
+
+.sobre-visual-caption {
+    position: absolute;
+    right: 15px;
+    bottom: 20px;
+    left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #65736a;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.sobre-caption-dot {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--sobre-green);
+}
+
+/* SECÇÕES */
+
+.sobre-section {
+    padding: 88px 0;
+    scroll-margin-top: 100px;
+}
+
+.sobre-section-soft {
+    background: var(--sobre-soft);
+}
+
+.sobre-section-heading {
+    max-width: 670px;
+    margin: 0 auto 42px;
+    text-align: center;
+}
+
+.sobre-section-heading .sobre-eyebrow {
+    margin-bottom: 12px;
+}
+
+.sobre-section-heading h2 {
+    margin: 0;
+    color: var(--sobre-text);
+    font-size: clamp(30px, 3.5vw, 43px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+}
+
+.sobre-section-heading > p {
+    max-width: 560px;
+    margin: 15px auto 0;
+    color: var(--sobre-muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+/* QUEM SOMOS */
+
+.sobre-intro {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    align-items: start;
+    gap: 85px;
+}
+
+.sobre-intro-heading h2 {
+    max-width: 460px;
+    margin: 0;
+    font-size: clamp(30px, 3.5vw, 43px);
+    font-weight: 800;
+    letter-spacing: -1.6px;
+    line-height: 1.2;
+}
+
+.sobre-heading-line {
+    display: block;
+    width: 58px;
+    height: 4px;
+    margin-top: 23px;
+    border-radius: 5px;
+    background: var(--sobre-green);
+}
+
+.sobre-intro-text p {
+    margin: 0 0 17px;
+    color: var(--sobre-muted);
+    font-size: 14px;
+    line-height: 1.95;
+}
+
+.sobre-intro-text p:last-of-type {
+    margin-bottom: 22px;
+}
+
+/* MISSÃO E VISÃO */
+
+.sobre-missao-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.sobre-missao-card {
+    position: relative;
+    padding: 32px;
+    border: 1px solid var(--sobre-border);
+    border-radius: 18px;
+    background: #ffffff;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.sobre-missao-card:hover {
+    transform: translateY(-4px);
+    border-color: #c9e1d0;
+    box-shadow: 0 16px 36px rgba(23, 37, 30, .06);
+}
+
+.sobre-missao-icon {
+    display: grid;
+    width: 54px;
+    height: 54px;
+    place-items: center;
+    border-radius: 15px;
+    background: var(--sobre-green-light);
+    color: var(--sobre-green);
+}
+
+.sobre-card-label {
+    display: block;
+    margin-top: 24px;
+    color: var(--sobre-green);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+}
+
+.sobre-missao-card h3 {
+    margin: 8px 0 12px;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+}
+
+.sobre-missao-card p {
+    margin: 0;
+    color: var(--sobre-muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+/* BENEFÍCIOS */
+
+.sobre-beneficios {
+    display: grid;
+    grid-template-columns: .95fr 1.05fr;
+    align-items: center;
+    gap: 80px;
+}
+
+.sobre-beneficios-visual {
+    position: relative;
+    display: grid;
+    min-height: 350px;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid var(--sobre-border);
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 50% 45%, #fff 0%, #f0f8f1 48%, #dfefe2 100%);
+}
+
+.sobre-beneficios-visual::before,
+.sobre-beneficios-visual::after {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border: 1px solid rgba(22, 121, 75, .13);
+    border-radius: 50%;
+    content: "";
+}
+
+.sobre-beneficios-visual::after {
+    width: 300px;
+    height: 300px;
+}
+
+.sobre-beneficios-icon {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: 120px;
+    height: 120px;
+    place-items: center;
+    border: 1px solid #e3ece5;
+    border-radius: 28px;
+    background: #fff;
+    color: var(--sobre-green);
+    box-shadow: 0 20px 45px rgba(22, 80, 46, .1);
+}
+
+.sobre-beneficios-message {
+    position: absolute;
+    right: 16px;
+    bottom: 20px;
+    left: 16px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 280px;
+    margin: 0 auto;
+    padding: 15px;
+    border: 1px solid var(--sobre-border);
+    border-radius: 13px;
+    background: #fff;
+    box-shadow: 0 12px 30px rgba(23, 37, 30, .06);
+}
+
+.sobre-beneficios-message > svg {
+    flex-shrink: 0;
+    color: var(--sobre-green);
+}
+
+.sobre-beneficios-message span {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sobre-beneficios-message strong {
+    font-size: 12px;
+}
+
+.sobre-beneficios-message small {
+    color: var(--sobre-muted);
+    font-size: 11px;
+}
+
+.sobre-beneficios-content h2 {
+    margin: 0;
+    font-size: clamp(29px, 3.4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+}
+
+.sobre-beneficios-content > p {
+    margin: 18px 0;
+    color: var(--sobre-muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.sobre-beneficios-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 23px 0 27px;
+    padding: 0;
+    list-style: none;
+}
+
+.sobre-beneficios-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    color: #425047;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.sobre-beneficios-list svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--sobre-green);
+}
+
+/* VALORES */
+
+.valores-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.valor-card {
+    padding: 29px;
+    border: 1px solid var(--sobre-border);
+    border-radius: 17px;
+    background: #ffffff;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.valor-card:hover {
+    transform: translateY(-4px);
+    border-color: #c9e1d0;
+    box-shadow: 0 15px 35px rgba(23, 37, 30, .06);
+}
+
+.valor-icon {
+    display: grid;
+    width: 53px;
+    height: 53px;
+    place-items: center;
+    border-radius: 14px;
+    background: var(--sobre-green-light);
+    color: var(--sobre-green);
+}
+
+.valor-card h3 {
+    margin: 22px 0 10px;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.valor-card p {
+    margin: 0;
+    color: var(--sobre-muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+/* CHAMADA FINAL */
+
+.sobre-cta {
+    position: relative;
+    padding: 64px 0;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 90% 0%, rgba(94, 173, 122, .17), transparent 40%),
+        #123d2a;
+    color: #ffffff;
+}
+
+.sobre-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.sobre-cta-content {
+    max-width: 720px;
+}
+
+.sobre-cta .sobre-eyebrow {
+    color: #a6e0bb;
+}
+
+.sobre-cta h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(30px, 3.5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -1.6px;
+    line-height: 1.2;
+}
+
+.sobre-cta p {
+    margin: 15px 0 0;
+    color: #d0e0d5;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.sobre-button-light {
+    flex-shrink: 0;
+    background: #ffffff;
+    color: var(--sobre-green-dark) !important;
+}
+
+.sobre-button-light:hover {
+    background: #eaf5ee;
+    color: var(--sobre-green-dark) !important;
+}
+
+/* TABLETS */
+
+@media (max-width: 900px) {
+    .sobre-hero-grid {
+        gap: 35px;
+    }
+
+    .sobre-visual {
+        min-height: 350px;
+    }
+
+    .sobre-intro,
+    .sobre-beneficios {
+        gap: 40px;
+    }
+
+    .valores-grid {
+        gap: 15px;
+    }
+
+    .valor-card {
+        padding: 22px;
+    }
+
+    .sobre-floating-one {
+        right: 10px;
+    }
+
+    .sobre-floating-two {
+        left: 10px;
+    }
+}
+
+/* TELEMÓVEIS */
+
+@media (max-width: 650px) {
+    .sobre-container {
+        width: calc(100% - 32px);
+    }
+
+    .sobre-hero {
+        padding: 48px 0 52px;
+    }
+
+    .sobre-hero-grid,
+    .sobre-intro,
+    .sobre-beneficios {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .sobre-hero h1 {
+        font-size: clamp(39px, 10.5vw, 53px);
+        letter-spacing: -1.8px;
+    }
+
+    .sobre-hero-copy > p {
+        margin: 20px 0 24px;
+        font-size: 14px;
+        line-height: 1.85;
+    }
+
+    .sobre-hero-actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 17px;
+    }
+
+    .sobre-hero-trust {
+        gap: 12px;
+    }
+
+    .sobre-visual {
+        min-height: 310px;
+        border-radius: 21px;
+    }
+
+    .sobre-visual-icon {
+        width: 120px;
+        height: 120px;
+        border-radius: 27px;
+    }
+
+    .sobre-decoration-one {
+        width: 200px;
+        height: 200px;
+    }
+
+    .sobre-decoration-two {
+        width: 275px;
+        height: 275px;
+    }
+
+    .sobre-floating-one {
+        top: 25px;
+        right: 9px;
+    }
+
+    .sobre-floating-two {
+        bottom: 77px;
+        left: 9px;
+    }
+
+    .sobre-floating-card {
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .sobre-floating-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .sobre-floating-card strong {
+        font-size: 10px;
+    }
+
+    .sobre-floating-card small {
+        font-size: 9px;
+    }
+
+    .sobre-visual-caption {
+        bottom: 15px;
+        font-size: 10px;
+    }
+
+    .sobre-section {
+        padding: 58px 0;
+    }
+
+    .sobre-section-heading {
+        margin-bottom: 29px;
+    }
+
+    .sobre-section-heading h2,
+    .sobre-intro-heading h2,
+    .sobre-beneficios-content h2 {
+        font-size: 31px;
+        letter-spacing: -1px;
+    }
+
+    .sobre-intro-text p {
+        font-size: 13px;
+        line-height: 1.9;
+    }
+
+    .sobre-missao-grid,
+    .valores-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .sobre-missao-card,
+    .valor-card {
+        padding: 24px;
+    }
+
+    .sobre-beneficios-visual {
+        min-height: 290px;
+    }
+
+    .sobre-beneficios-icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .sobre-cta {
+        padding: 45px 0;
+    }
+
+    .sobre-cta-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .sobre-cta h2 {
+        font-size: 31px;
+        letter-spacing: -1px;
+    }
+
+    .sobre-button-light {
+        width: 100%;
+    }
+}
+
+/* ACESSIBILIDADE */
+
+@media (prefers-reduced-motion: reduce) {
+    .sobre-page *,
+    .sobre-page *::before,
+    .sobre-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}

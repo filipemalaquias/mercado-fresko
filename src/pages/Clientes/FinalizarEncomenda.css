@@ -1,0 +1,423 @@
+/* =========================================================
+   FINALIZAR ENCOMENDA
+   ========================================================= */
+
+.mf-finalizar {
+  background: var(--mf-surface, #fafaf7);
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  color: var(--mf-ink, #2a2f33);
+  padding: 3rem 1.5rem 5rem;
+  min-height: 70vh;
+}
+
+.mf-finalizar-voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--mf-primary, #123a4a);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: color 0.2s;
+}
+
+.mf-finalizar-voltar:hover {
+  color: var(--mf-accent-dark, #b57f1a);
+}
+
+.mf-finalizar-cabecalho {
+  max-width: 1000px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.mf-finalizar-cabecalho span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mf-accent, #d99b2b);
+}
+
+.mf-finalizar-cabecalho h1 {
+  font-size: 2.2rem;
+  color: var(--mf-primary-dark, #0b2732);
+  margin: 0.5rem 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.mf-finalizar-cabecalho p {
+  font-size: 1rem;
+  color: var(--mf-ink-soft, #6b7075);
+  margin: 0;
+}
+
+/* Layout Principal */
+.mf-finalizar-layout {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Formulário */
+.mf-finalizar-formulario {
+  background: #fff;
+  border: 1px solid var(--mf-border, #e2e4df);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.mf-finalizar-formulario h2 {
+  font-size: 1.15rem;
+  color: var(--mf-primary-dark, #0b2732);
+  margin: 0 0 0.5rem;
+  font-weight: 800;
+}
+
+.mf-finalizar-formulario label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--mf-ink, #2a2f33);
+}
+
+.mf-finalizar-formulario input,
+.mf-finalizar-formulario textarea {
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--mf-border, #e2e4df);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--mf-ink, #2a2f33);
+  transition: border-color 0.2s;
+}
+
+.mf-finalizar-formulario input:focus,
+.mf-finalizar-formulario textarea:focus {
+  outline: none;
+  border-color: var(--mf-primary, #123a4a);
+  box-shadow: 0 0 0 4px rgba(18, 58, 74, 0.1);
+}
+
+.mf-finalizar-duas-colunas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Métodos de Pagamento */
+.mf-metodos-pagamento {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.mf-metodo-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1.5px solid var(--mf-border, #e2e4df);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mf-metodo-card:hover {
+  border-color: var(--mf-primary, #123a4a);
+  background: var(--mf-surface-alt, #eef0ec);
+}
+
+.mf-metodo-card.selecionado {
+  border-color: var(--mf-primary, #123a4a);
+  background: var(--mf-surface-alt, #eef0ec);
+  box-shadow: 0 0 0 3px rgba(18, 58, 74, 0.1);
+}
+
+.mf-metodo-card input[type="radio"] {
+  display: none; /* Esconde o círculo padrão */
+}
+
+.mf-metodo-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--mf-primary, #123a4a);
+  border: 1px solid var(--mf-border, #e2e4df);
+  flex-shrink: 0;
+}
+
+.mf-metodo-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.mf-metodo-info strong {
+  font-size: 0.95rem;
+  color: var(--mf-primary-dark, #0b2732);
+}
+
+.mf-metodo-info span {
+  font-size: 0.8rem;
+  color: var(--mf-ink-soft, #6b7075);
+}
+
+/* Botões */
+.mf-finalizar-botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.5rem;
+  background: var(--mf-primary, #123a4a);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.mf-finalizar-botao:hover:not(:disabled) {
+  background: var(--mf-primary-dark, #0b2732);
+  transform: translateY(-1px);
+}
+
+.mf-finalizar-botao:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mf-finalizar-botao-largo {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Resumo */
+.mf-finalizar-resumo {
+  background: #fff;
+  border: 1px solid var(--mf-border, #e2e4df);
+  border-radius: 20px;
+  padding: 1.5rem;
+  position: sticky;
+  top: 100px;
+}
+
+.mf-finalizar-resumo h2 {
+  font-size: 1.15rem;
+  color: var(--mf-primary-dark, #0b2732);
+  margin: 0 0 1rem;
+  font-weight: 800;
+}
+
+.mf-finalizar-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--mf-border, #e2e4df);
+  font-size: 0.9rem;
+}
+
+.mf-finalizar-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.mf-finalizar-item strong {
+  color: var(--mf-primary-dark, #0b2732);
+}
+
+.mf-finalizar-item span {
+  font-size: 0.8rem;
+  color: var(--mf-ink-soft, #6b7075);
+}
+
+.mf-finalizar-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 0;
+  margin-top: 0.5rem;
+  border-top: 1.5px solid var(--mf-border, #e2e4df);
+  font-size: 1rem;
+}
+
+.mf-finalizar-total strong {
+  font-size: 1.5rem;
+  color: var(--mf-primary-dark, #0b2732);
+  font-weight: 800;
+}
+
+.mf-finalizar-nota {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--mf-ink-soft, #6b7075);
+  margin: 1rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--mf-border, #e2e4df);
+}
+
+/* Ecrã de Sucesso */
+.mf-finalizar-sucesso {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  background: #fff;
+  border: 1px solid var(--mf-border, #e2e4df);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+}
+
+.mf-sucesso-icon {
+  color: #1b7c3e;
+  margin-bottom: 1rem;
+}
+
+.mf-finalizar-sucesso h1 {
+  font-size: 1.8rem;
+  color: var(--mf-primary-dark, #0b2732);
+  margin: 0 0 0.5rem;
+}
+
+.mf-finalizar-sucesso > p {
+  color: var(--mf-ink-soft, #6b7075);
+  margin: 0 0 2rem;
+}
+
+.mf-pagamento-info {
+  background: var(--mf-surface-alt, #eef0ec);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.mf-pagamento-info h3 {
+  font-size: 1rem;
+  color: var(--mf-primary-dark, #0b2732);
+  margin: 0 0 0.5rem;
+}
+
+.mf-pagamento-info p {
+  font-size: 0.9rem;
+  color: var(--mf-ink-soft, #6b7075);
+  margin: 0 0 0.75rem;
+}
+
+.mf-referencia-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--mf-border, #e2e4df);
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: var(--mf-primary-dark, #0b2732);
+}
+
+.mf-aviso-pagamento {
+  font-size: 0.8rem !important;
+  color: var(--mf-accent-dark, #b57f1a) !important;
+  margin-top: 1rem !important;
+  font-weight: 600;
+}
+
+/* Ecrã de erro/vazio */
+.mf-finalizar-vazio {
+  max-width: 500px;
+  margin: 4rem auto;
+  text-align: center;
+}
+
+.mf-finalizar-vazio h1 {
+  font-size: 1.5rem;
+  color: var(--mf-primary-dark, #0b2732);
+  margin-bottom: 1.5rem;
+}
+
+.mf-finalizar-erro {
+  background: #fff0ec;
+  color: #b23a1f;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #f7dcd0;
+  font-size: 0.9rem;
+}
+
+/* Loader */
+.mf-a-girar {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .mf-finalizar-layout {
+    grid-template-columns: 1fr;
+  }
+  .mf-finalizar-resumo {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .mf-finalizar {
+    padding: 1.5rem 1rem 4rem;
+  }
+  .mf-finalizar-duas-colunas {
+    grid-template-columns: 1fr;
+  }
+  .mf-finalizar-cabecalho h1 {
+    font-size: 1.6rem;
+  }
+}
+
+
+.mf-finalizar-formulario select {
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--mf-border, #e2e4df);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--mf-ink, #2a2f33);
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  appearance: none; /* Remove a seta padrão do browser */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7075' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px;
+}
+
+.mf-finalizar-formulario select:focus {
+  outline: none;
+  border-color: var(--mf-primary, #123a4a);
+  box-shadow: 0 0 0 4px rgba(18, 58, 74, 0.1);
+}
+
+.mf-finalizar-formulario select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,960 @@
+/* ===== Mercado Fresko — Modern Merchant Dashboard ===== */
+
+.mf-merchant-page {
+  --mf-primary: #15803d;
+  --mf-primary-dark: #166534;
+  --mf-primary-light: #f0fdf4;
+  --mf-text: #0f172a;
+  --mf-muted: #64748b;
+  --mf-border: #e2e8f0;
+  --mf-surface: #ffffff;
+
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 0% 0%, rgb(220 252 231 / 42%), transparent 35%),
+    #f8fafc;
+  color: var(--mf-text);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mf-merchant-page *,
+.mf-merchant-page *::before,
+.mf-merchant-page *::after {
+  box-sizing: border-box;
+}
+
+/* ===== Cabeçalho ===== */
+
+.mf-merchant-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  min-height: 76px;
+  padding: 15px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: rgb(255 255 255 / 92%);
+  border-bottom: 1px solid rgb(226 232 240 / 85%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  margin-top: 40px;
+}
+
+.mf-merchant-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--mf-primary);
+  font-size: 22px;
+  font-weight: 850;
+  letter-spacing: -0.8px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.mf-merchant-brand:hover {
+  opacity: 0.8;
+}
+
+.mf-merchant-brand svg {
+  width: 42px;
+  height: 42px;
+  padding: 9px;
+  color: #fff;
+  background: linear-gradient(135deg, #16a34a, #166534);
+  border-radius: 13px;
+  box-shadow: 0 5px 12px rgb(21 128 61 / 20%);
+}
+
+.mf-merchant-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mf-merchant-account {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.mf-merchant-account svg {
+  color: var(--mf-primary);
+}
+
+/* ===== Botões ===== */
+
+.mf-merchant-logout,
+.mf-merchant-secondary-button,
+.mf-merchant-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 11px 17px;
+  border-radius: 11px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mf-merchant-logout:hover,
+.mf-merchant-secondary-button:hover,
+.mf-merchant-primary-button:hover {
+  transform: translateY(-1px);
+}
+
+.mf-merchant-logout {
+  color: #b91c1c;
+  background: #fff;
+  border: 1px solid #fecaca;
+}
+
+.mf-merchant-logout:hover {
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+
+.mf-merchant-primary-button {
+  color: #fff;
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  border: 1px solid #15803d;
+  box-shadow: 0 4px 10px rgb(21 128 61 / 15%);
+}
+
+.mf-merchant-primary-button:hover {
+  background: linear-gradient(135deg, #15803d, #166534);
+  box-shadow: 0 7px 16px rgb(21 128 61 / 22%);
+}
+
+.mf-merchant-primary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.mf-merchant-secondary-button {
+  color: #334155;
+  background: #fff;
+  border: 1px solid #dbe3ec;
+}
+
+.mf-merchant-secondary-button:hover {
+  color: var(--mf-primary-dark);
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+/* ===== Área principal ===== */
+
+.mf-merchant-content {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+  padding: 42px 0 32px;
+}
+
+.mf-merchant-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 32px;
+  animation: mf-fade-in 0.45s ease both;
+}
+
+.mf-merchant-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 13px;
+  color: var(--mf-primary);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.mf-merchant-eyebrow::before {
+  width: 20px;
+  height: 2px;
+  background: #22c55e;
+  border-radius: 2px;
+  content: "";
+}
+
+.mf-merchant-welcome h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(28px, 4vw, 39px);
+  line-height: 1.15;
+  letter-spacing: -1.4px;
+  font-weight: 850;
+}
+
+.mf-merchant-welcome p:not(.mf-merchant-eyebrow) {
+  max-width: 620px;
+  margin: 14px 0 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.mf-merchant-welcome-icon {
+  display: grid;
+  width: 86px;
+  height: 86px;
+  flex-shrink: 0;
+  place-items: center;
+  color: #15803d;
+  background: linear-gradient(145deg, #dcfce7, #bbf7d0);
+  border: 1px solid #bbf7d0;
+  border-radius: 25px;
+  box-shadow: 0 12px 25px rgb(21 128 61 / 9%);
+}
+
+.mf-merchant-welcome-icon svg {
+  width: 37px;
+  height: 37px;
+}
+
+/* ===== Cartões ===== */
+
+.mf-merchant-card {
+  padding: 30px;
+  margin-bottom: 26px;
+  background: rgb(255 255 255 / 96%);
+  border: 1px solid #e7edf3;
+  border-radius: 20px;
+  box-shadow:
+    0 2px 5px rgb(15 23 42 / 2%),
+    0 12px 35px rgb(15 23 42 / 4%);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+  animation: mf-fade-in 0.45s ease both;
+}
+
+.mf-merchant-card:hover {
+  border-color: #d7e9dd;
+  box-shadow:
+    0 3px 8px rgb(15 23 42 / 3%),
+    0 16px 40px rgb(15 23 42 / 6%);
+}
+
+.mf-merchant-card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 24px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.mf-merchant-card-heading h2,
+.mf-merchant-store-title h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.mf-merchant-card-heading p {
+  margin: 9px 0 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+/* ===== Formulário ===== */
+
+.mf-merchant-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.mf-merchant-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+}
+
+.mf-merchant-form-group label,
+.mf-merchant-logo-field > label:first-child {
+  color: #334155;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.mf-merchant-form-group input,
+.mf-merchant-form-group select,
+.mf-merchant-form-group textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 13px 15px;
+  color: #0f172a;
+  background: #fbfcfe;
+  border: 1px solid #dce4ec;
+  border-radius: 11px;
+  outline: none;
+  font: inherit;
+  font-size: 13px;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.mf-merchant-form-group input:hover,
+.mf-merchant-form-group select:hover,
+.mf-merchant-form-group textarea:hover {
+  border-color: #b9c8d7;
+}
+
+.mf-merchant-form-group input:focus,
+.mf-merchant-form-group select:focus,
+.mf-merchant-form-group textarea:focus {
+  background: #fff;
+  border-color: #22a052;
+  box-shadow: 0 0 0 4px rgb(34 160 82 / 10%);
+}
+
+.mf-merchant-form-group textarea {
+  min-height: 125px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.mf-merchant-form-group input::placeholder,
+.mf-merchant-form-group textarea::placeholder {
+  color: #9aa8b8;
+}
+
+.mf-merchant-form-group input:disabled,
+.mf-merchant-form-group select:disabled,
+.mf-merchant-form-group textarea:disabled {
+  color: #94a3b8;
+  background: #f1f5f9;
+  cursor: not-allowed;
+}
+
+.mf-merchant-logo-field {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  grid-column: 1 / -1;
+  padding-bottom: 26px;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.mf-merchant-optional {
+  color: #94a3b8;
+  font-weight: 450;
+}
+
+.mf-merchant-logo-field > p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.mf-merchant-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+.mf-merchant-logo-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 156px;
+  height: 126px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(45deg, #f8fafc 25%, transparent 25%),
+    linear-gradient(-45deg, #f8fafc 25%, transparent 25%),
+    #fff;
+  border: 1px dashed #b8c8d5;
+  border-radius: 15px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mf-merchant-logo-upload:hover {
+  background: #f0fdf4;
+  border-color: #16a34a;
+  transform: translateY(-2px);
+}
+
+.mf-merchant-logo-preview {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  object-fit: contain;
+}
+
+.mf-merchant-logo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #64748b;
+  font-size: 12px;
+  text-align: center;
+}
+
+.mf-merchant-logo-placeholder svg {
+  color: #16a34a;
+}
+
+.mf-merchant-logo-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.mf-merchant-select-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 11px 15px;
+  color: #166534;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.mf-merchant-select-logo:hover {
+  background: #dcfce7;
+  border-color: #86efac;
+}
+
+.mf-merchant-remove-logo {
+  padding: 2px 0;
+  color: #b91c1c;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mf-merchant-remove-logo:hover {
+  color: #7f1d1d;
+  text-decoration: underline;
+}
+
+.mf-merchant-logo-help {
+  color: #94a3b8;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.mf-merchant-form-actions {
+  display: flex;
+  grid-column: 1 / -1;
+  justify-content: flex-end;
+  padding-top: 6px;
+}
+
+/* ===== Resumo da loja ===== */
+
+.mf-merchant-store-heading {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.mf-merchant-store-logo {
+  display: grid;
+  width: 82px;
+  height: 82px;
+  flex-shrink: 0;
+  overflow: hidden;
+  place-items: center;
+  color: #15803d;
+  background: linear-gradient(145deg, #f0fdf4, #dcfce7);
+  border: 1px solid #d1fae5;
+  border-radius: 18px;
+}
+
+.mf-merchant-store-logo img {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  object-fit: contain;
+}
+
+.mf-merchant-store-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.mf-merchant-store-title h2 {
+  overflow-wrap: anywhere;
+}
+
+.mf-merchant-store-title p {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 10px 0 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.mf-merchant-store-title p svg {
+  flex-shrink: 0;
+  color: #16a34a;
+}
+
+.mf-merchant-store-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+  padding: 28px 0;
+}
+
+.mf-merchant-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  padding: 17px;
+  background: #f8fafc;
+  border: 1px solid #edf1f5;
+  border-radius: 13px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.mf-merchant-detail:hover {
+  background: #f0fdf4;
+  border-color: #dcfce7;
+}
+
+.mf-merchant-detail-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.mf-merchant-detail-label svg {
+  color: #16a34a;
+}
+
+.mf-merchant-detail strong {
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.mf-merchant-detail-full {
+  grid-column: 1 / -1;
+}
+
+.mf-merchant-detail-full p {
+  margin: 0;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.9;
+  white-space: pre-wrap;
+}
+
+.mf-merchant-dashboard-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 23px;
+  border-top: 1px solid #edf1f5;
+}
+
+/* ===== Alertas ===== */
+
+.mf-merchant-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 15px 17px;
+  margin-bottom: 22px;
+  border: 1px solid;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.8;
+  animation: mf-fade-in 0.25s ease both;
+}
+
+.mf-merchant-alert svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.mf-merchant-alert-error {
+  color: #991b1b;
+  background: #fff5f5;
+  border-color: #fecaca;
+}
+
+.mf-merchant-alert-success {
+  color: #166534;
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+/* ===== Carregamento ===== */
+
+.mf-merchant-loading {
+  display: flex;
+  min-height: 70vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.mf-spin {
+  color: #16a34a;
+  animation: mf-merchant-spin 1s linear infinite;
+}
+
+.mf-merchant-footer {
+  padding: 18px 0;
+  color: #94a3b8;
+  font-size: 11px;
+  text-align: center;
+}
+
+/* ===== Animações ===== */
+
+@keyframes mf-merchant-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mf-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsividade ===== */
+
+@media (max-width: 700px) {
+  .mf-merchant-header {
+    min-height: 68px;
+    align-items: center;
+    padding: 12px 4%;
+  }
+
+  @media (min-width: 769px) {
+    .mf-merchant-page {
+      padding-top: 72px;
+      padding-left: 255px;
+    }
+
+    .mf-merchant-page .mf-merchant-content {
+      width: min(1120px, calc(100% - 56px));
+      padding-top: 36px;
+    }
+
+    .mf-merchant-loading {
+      min-height: calc(100vh - 72px);
+      margin-left: 255px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mf-merchant-page {
+      padding-top: 64px;
+      padding-left: 0;
+    }
+
+    .mf-merchant-page .mf-merchant-content {
+      width: min(1120px, calc(100% - 32px));
+      padding-top: 28px;
+    }
+
+    .mf-merchant-loading {
+      min-height: calc(100vh - 64px);
+      padding-top: 64px;
+    }
+  }
+
+  .mf-merchant-brand {
+    gap: 9px;
+    font-size: 17px;
+  }
+
+  .mf-merchant-brand svg {
+    width: 37px;
+    height: 37px;
+    padding: 8px;
+  }
+
+  .mf-merchant-header-actions {
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mf-merchant-account {
+    max-width: 150px;
+    font-size: 11px;
+    overflow-wrap: anywhere;
+  }
+
+  .mf-merchant-logout {
+    min-height: 35px;
+    padding: 7px 10px;
+    border-radius: 9px;
+    font-size: 11px;
+  }
+
+  .mf-merchant-content {
+    width: 92%;
+    padding-top: 28px;
+  }
+
+  .mf-merchant-welcome {
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 25px;
+  }
+
+  .mf-merchant-eyebrow {
+    margin-bottom: 10px;
+    font-size: 10px;
+    letter-spacing: 1.3px;
+  }
+
+  .mf-merchant-welcome h1 {
+    font-size: clamp(25px, 7vw, 32px);
+    letter-spacing: -0.9px;
+  }
+
+  .mf-merchant-welcome p:not(.mf-merchant-eyebrow) {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .mf-merchant-welcome-icon {
+    width: 49px;
+    height: 49px;
+    border-radius: 15px;
+  }
+
+  .mf-merchant-welcome-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mf-merchant-card {
+    padding: 22px 17px;
+    margin-bottom: 19px;
+    border-radius: 16px;
+  }
+
+  .mf-merchant-card-heading {
+    gap: 10px;
+    padding-bottom: 19px;
+    margin-bottom: 21px;
+  }
+
+  .mf-merchant-card-heading h2,
+  .mf-merchant-store-title h2 {
+    font-size: 19px;
+  }
+
+  .mf-merchant-card-heading p {
+    font-size: 12px;
+  }
+
+  .mf-merchant-form {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 19px;
+  }
+
+  .mf-merchant-form-group input,
+  .mf-merchant-form-group select,
+  .mf-merchant-form-group textarea {
+    min-height: 46px;
+    font-size: 14px;
+  }
+
+  .mf-merchant-logo-field,
+  .mf-merchant-form-actions {
+    grid-column: 1;
+  }
+
+  .mf-merchant-logo-row {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .mf-merchant-logo-upload {
+    width: 125px;
+    height: 112px;
+  }
+
+  .mf-merchant-logo-actions {
+    gap: 12px;
+  }
+
+  .mf-merchant-store-heading {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .mf-merchant-store-logo {
+    width: 65px;
+    height: 65px;
+    border-radius: 14px;
+  }
+
+  .mf-merchant-store-title {
+    width: calc(100% - 80px);
+  }
+
+  .mf-merchant-store-heading > .mf-merchant-secondary-button {
+    width: 100%;
+  }
+
+  .mf-merchant-store-details {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding: 20px 0;
+  }
+
+  .mf-merchant-detail {
+    padding: 15px;
+  }
+
+  .mf-merchant-detail-full {
+    grid-column: 1;
+  }
+
+  .mf-merchant-form-actions,
+  .mf-merchant-form-actions .mf-merchant-primary-button {
+    width: 100%;
+  }
+
+  .mf-merchant-dashboard-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .mf-merchant-dashboard-actions > * {
+    width: 100%;
+  }
+
+  .mf-merchant-primary-button,
+  .mf-merchant-secondary-button {
+    min-height: 45px;
+  }
+}
+
+@media (max-width: 380px) {
+  .mf-merchant-header {
+    align-items: flex-start;
+  }
+
+  .mf-merchant-brand {
+    font-size: 15px;
+  }
+
+  .mf-merchant-account {
+    max-width: 115px;
+  }
+
+  .mf-merchant-welcome-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .mf-merchant-logo-row {
+    flex-direction: column;
+  }
+
+  .mf-merchant-logo-upload {
+    width: 100%;
+    height: 145px;
+  }
+}
+
+/* ===== Acessibilidade ===== */
+
+.mf-merchant-page button:focus-visible,
+.mf-merchant-page a:focus-visible,
+.mf-merchant-page input:focus-visible,
+.mf-merchant-page select:focus-visible,
+.mf-merchant-page textarea:focus-visible {
+  outline: 3px solid rgb(34 197 94 / 35%);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mf-merchant-page *,
+  .mf-merchant-page *::before,
+  .mf-merchant-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,170 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ==========================================
+    // FUNÇÕES AUXILIARES DE SEGURANÇA
+    // ==========================================
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function isClient() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid))
+        && get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.tipo == 'cliente';
+    }
+
+    function isMerchant() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid))
+        && get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.tipo == 'comerciante';
+    }
+
+    function isLojaConfigurada() {
+      return exists(/databases/$(database)/documents/lojas/$(request.auth.uid))
+        && get(/databases/$(database)/documents/lojas/$(request.auth.uid)).data.configurada == true;
+    }
+
+    // ==========================================
+    // UTILIZADORES (Perfis)
+    // ==========================================
+    match /usuarios/{uid} {
+      // Só o próprio utilizador pode ler o seu perfil
+      allow read: if isOwner(uid);
+
+      // Regras de criação mantidas rigorosas (iguais às tuas)
+      allow create: if isOwner(uid)
+                    && request.resource.data.uid == uid
+                    && request.resource.data.email == request.auth.token.email
+                    && request.resource.data.tipo in ['cliente', 'comerciante']
+                    && request.resource.data.keys().hasAll(['uid', 'nome', 'email', 'telefone', 'tipo', 'criadoEm'])
+                    && request.resource.data.nome.size() > 0
+                    && request.resource.data.telefone.matches('^\\+2449[0-9]{8}$')
+                    && (request.resource.data.tipo != 'comerciante' || 
+                       (request.resource.data.keys().hasAll(['negocio', 'nif', 'estadoComerciante'])
+                        && request.resource.data.estadoComerciante == 'pendente'));
+
+      // Ninguém pode alterar ou apagar o perfil depois de criado
+      allow update, delete: if false;
+
+      // FAVORITOS (Correção de Segurança: impede acesso cruzado)
+      match /favoritos/{produtoId} {
+        allow read, write: if isOwner(uid) && isClient();
+        allow create: if isOwner(uid) && isClient()
+          && request.resource.data.keys().hasOnly(['produtoId', 'criadoEm'])
+          && request.resource.data.produtoId == produtoId
+          && request.resource.data.criadoEm is timestamp
+          && exists(/databases/$(database)/documents/produtos/$(produtoId))
+          && get(/databases/$(database)/documents/produtos/$(produtoId)).data.publicado == true;
+        allow update: if false; // Não se atualiza um favorito, apenas apaga ou cria
+      }
+
+      // COMISSÕES
+      match /comissoes/{comissaoId} {
+        allow get, list: if isOwner(uid) && isClient();
+        allow create, update, delete: if false;
+      }
+    }
+
+    // ==========================================
+    // LOJAS
+    // ==========================================
+    match /lojas/{uid} {
+      // Qualquer pessoa logada pode ler lojas configuradas
+      allow read: if (signedIn() && resource.data.configurada == true) || isOwner(uid);
+
+      allow create: if isOwner(uid) && isMerchant()
+                    && request.resource.data.keys().hasOnly(['uid', 'nome', 'descricao', 'telefone', 'provincia', 'municipio', 'endereco', 'configurada', 'criadoEm', 'atualizadoEm', 'logoUrl', 'logoPublicId'])
+                    && request.resource.data.uid == uid
+                    && request.resource.data.configurada == true;
+
+      allow update: if isOwner(uid) && isMerchant()
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nome', 'descricao', 'telefone', 'provincia', 'municipio', 'endereco', 'configurada', 'atualizadoEm', 'logoUrl', 'logoPublicId'])
+                    && request.resource.data.configurada == true;
+
+      allow delete: if false; // Nunca se apaga uma loja (apenas desativa)
+    }
+    // ==========================================
+    // PRODUTOS (Regra Segura e Otimizada)
+    // ==========================================
+    match /produtos/{produtoId} {
+      
+      // 1. LEITURA: O cliente vê os publicados. O comerciante vê os dele.
+      allow get, list: if signedIn() && (
+        resource.data.publicado == true || 
+        (isMerchant() && resource.data.comercianteId == request.auth.uid)
+      );
+
+      // 2. CRIAÇÃO: Exige que o produto pertença ao comerciante logado
+      allow create: if isMerchant()
+        && isLojaConfigurada()
+        && request.resource.data.comercianteId == request.auth.uid
+        && request.resource.data.keys().hasAll([
+          'nome', 'nomePesquisa', 'categoria', 'descricao', 
+          'quantidade', 'stockMinimo', 'unidade', 'preco', 
+          'valorAfiliado', 'provinciaOrigem', 'comercianteId', 
+          'imagemUrl', 'imagemPath', 'publicado', 'criadoEm', 'atualizadoEm'
+        ])
+        && request.resource.data.keys().hasOnly([
+          'nome', 'nomePesquisa', 'categoria', 'descricao', 
+          'quantidade', 'stockMinimo', 'unidade', 'preco', 
+          'valorAfiliado', 'provinciaOrigem', 'comercianteId', 
+          'imagemUrl', 'imagemPath', 'publicado', 'criadoEm', 'atualizadoEm'
+        ])
+        && request.resource.data.preco > 0
+        && request.resource.data.quantidade >= 0;
+
+      // 3. ATUALIZAÇÃO: O comerciante só altera o que é dele
+      allow update: if isMerchant()
+        && resource.data.comercianteId == request.auth.uid // O dono é o mesmo
+        && request.resource.data.comercianteId == resource.data.comercianteId // Não pode mudar de dono
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'nome', 'nomePesquisa', 'categoria', 'descricao', 
+          'quantidade', 'stockMinimo', 'unidade', 'preco', 
+          'valorAfiliado', 'provinciaOrigem', 'imagemUrl', 
+          'imagemPath', 'publicado', 'atualizadoEm'
+        ]) // Repare que 'comercianteId' e 'lojaNome' foram REMOVIDOS daqui. Ele não pode ser alterado.
+        && request.resource.data.atualizadoEm is timestamp;
+
+      // 4. APAGAR: Apenas o dono
+      allow delete: if isMerchant() && resource.data.comercianteId == request.auth.uid;
+    }
+
+    // ==========================================
+    // ENCOMENDAS (Correção de Segurança Crítica)
+    // ==========================================
+    match /encomendas/{encomendaId} {
+      // O cliente só pode ver as SUAS encomendas. O comerciante só as que são para ELE.
+      allow get, list: if signedIn() && (
+        (isClient() && resource.data.clienteUid == request.auth.uid) ||
+        (isMerchant() && resource.data.comercianteId == request.auth.uid)
+      );
+      
+      // O frontend atualmente não cria encomendas diretamente (usa funções/backend), 
+      // por isso mantemos bloqueado por segurança.
+      allow create, update, delete: if false;
+    }
+
+    // ==========================================
+    // BLOQUEIO DE OUTRAS ROTAS
+    // ==========================================
+    match /credenciais/{uid} {
+      allow read, write: if false;
+    }
+
+    match /telefoneIndex/{id} {
+      allow read, write: if false;
+    }
+
+    match /nifIndex/{id} {
+      allow read, write: if false;
+    }
+
+  }
+}
