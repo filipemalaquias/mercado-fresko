@@ -143,23 +143,23 @@ export default function FinalizarEncomenda() {
       const encomendaRef = await addDoc(collection(db, "encomendas"), encomendaData);
       const encomendaId = encomendaRef.id;
 
-      // 2. Autenticar na AppyPay (VIA PROXY DO FIREBASE HOSTING)
+      // 2. Autenticar na AppyPay (VIA PROXY DA RENDER)
       const params = new URLSearchParams();
       params.append("grant_type", "client_credentials");
       params.append("client_id", import.meta.env.VITE_APPYPAY_CLIENT_ID);
       params.append("client_secret", import.meta.env.VITE_APPYPAY_CLIENT_SECRET);
 
       const authResponse = await axios.post(
-        "/api/appypay/auth", // 👈 Caminho do Proxy
+        "https://mercado-fresko-proxy.onrender.com/api/appypay/auth",
         params.toString(),
         { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
       );
       
       const token = authResponse.data.access_token;
 
-      // 3. Criar a cobrança (VIA PROXY DO FIREBASE HOSTING)
+      // 3. Criar a cobrança (VIA PROXY DA RENDER)
       const pagamentoResponse = await axios.post(
-        "/api/appypay/charges", // 👈 Caminho do Proxy
+        "https://mercado-fresko-proxy.onrender.com/api/appypay/charges",
         {
           merchantTransactionId: encomendaId.substring(0, 15),
           amount: Number(subtotal),
