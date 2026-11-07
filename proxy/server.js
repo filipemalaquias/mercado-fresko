@@ -15,12 +15,12 @@ app.post('/api/appypay/auth', async (req, res) => {
     params.append('client_id', process.env.APPYPAY_CLIENT_ID);
     params.append('client_secret', process.env.APPYPAY_CLIENT_SECRET);
     
-    // 👇 O resource é obrigatório segundo a documentação oficial
+    // O resource é obrigatório segundo a documentação/SDK
     params.append('resource', '2aed7612-de64-46b5-9e59-1f48f8902d14');
 
-    // 👇 URL oficial de autenticação (Microsoft Azure AD)
+    // URL CORRETO da AppyPay (não o da Microsoft)
     const response = await axios.post(
-      'https://login.microsoftonline.com/appypaydev.onmicrosoft.com/oauth2/token', 
+      'https://auth.appypay.co.ao/connect/token', 
       params, 
       {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -39,10 +39,8 @@ app.post('/api/appypay/auth', async (req, res) => {
 // Rota de Cobrança
 app.post('/api/appypay/charges', async (req, res) => {
   try {
-    // O token vem no header Authorization que o React envia
     const token = req.headers.authorization;
     
-    // Log para debug (podes remover depois)
     console.log('A enviar para AppyPay:', req.body);
 
     const response = await axios.post(
